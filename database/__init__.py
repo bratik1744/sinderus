@@ -7,3 +7,4 @@ from .serch_like import search_like
 from  .serch_anket import search_anket
 from .write_None import write_None
 from .mylike import mylike
+from .edit_view import edit_view

@@ -102,9 +102,9 @@ def messagecontroll(message, bot):
         elif text == "Смотреть анкеты" or text == "Пропустить":
             ank = search_anket(search_acc(telegram_id=id)[0][8])
             lst = set([i[0] for i in ank])
-            like = search_like(telegram_id_who=id)
-            lst_llike = set([i[1] for i in like])
-            vib = lst - lst_llike
+            lst_view = set(search_acc(telegram_id=id)[-1].split())
+            vib = lst - lst_view
+
             if vib:
                 ank_id = choice(list(vib))
                 acc = search_acc(telegram_id=ank_id)[0]
@@ -123,6 +123,7 @@ def messagecontroll(message, bot):
                 markup.add(item4)
                 bot.send_photo(id, f, caption=text, reply_markup=markup)
                 edit_acc(telegram_id=id, id_like=ank_id)
+                edit_view(id, ank_id)
             else:
                 markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
                 item1 = types.KeyboardButton("Смотреть анкеты")
@@ -138,9 +139,8 @@ def messagecontroll(message, bot):
 
             ank = search_anket(search_acc(telegram_id=id)[0][8])
             lst = set([i[0] for i in ank])
-            like = search_like(telegram_id_who=id)
-            lst_llike = set([i[1] for i in like])
-            vib = lst - lst_llike
+            lst_view = set(search_acc(telegram_id=id)[-1].split())
+            vib = lst - lst_view
             if vib:
                 ank_id = choice(list(vib))
                 acc = search_acc(telegram_id=ank_id)
@@ -158,6 +158,7 @@ def messagecontroll(message, bot):
                 markup.add(item4)
                 bot.send_photo(id, f, caption=text, reply_markup=markup)
                 edit_acc(telegram_id=id, id_like=ank_id)
+                edit_view(id, ank_id)
             else:
                 markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
                 item1 = types.KeyboardButton("Смотреть анкеты")
